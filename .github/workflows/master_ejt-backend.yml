@@ -16,6 +16,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: App Settings Variable Substitution
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: '${{env.DOTNET_ROOT}}/myapp/appsettings.Producation.json'
+        env:
+          CoreOrigin: ${{ secrets.COREORIGIN }}
+          ConnectionString: ${{ secrets.CONNECTIONSTRING }}
+          EmailData.weburl: ${{ secrets.EMAILDATA_WEBURL }}          
+          EmailData.email: ${{ secrets.EMAILDATA_EMAIL }}
+          EmailData.phone: ${{ secrets.EMAILDATA_PHONE }}
+          SecretKey: ${{ secrets.SECRETKEY }}
+          SecretAdherentCode: ${{ secrets.SECRETADHERENTCODE }}
+          SmtpClient.from: ${{ secrets.SMTPCLIENT_FROM }}
+          SmtpClient.user: ${{ secrets.SMTPCLIENT_USER }}
+          SmtpClient.password: ${{ secrets.SMTPCLIENT_PASSWORD }}
+          SmtpClient.host: ${{ secrets.SMTPCLIENT_HOST }}
+          SmtpClient.port: ${{ secrets.SMTPCLIENT_PORT }}
+          
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
