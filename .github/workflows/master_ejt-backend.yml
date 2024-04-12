@@ -35,8 +35,16 @@ jobs:
         env:
           CoreOrigin: ${{ secrets.COREORIGIN }}
           ConnectionString: ${{ secrets.CONNECTIONSTRING }}
+          SmtpClient.from: ${{ secrets.CONNECTIONSTRING }}
+          SmtpClient.user: ${{ secrets.SMTPCLIENT_USER }}
+          SmtpClient.password: ${{ secrets.SMTPCLIENT_PASSWORD }}
           SmtpClient.host: ${{ secrets.SMTPCLIENT_HOST }}
           SmtpClient.port: ${{ secrets.SMTPCLIENT_PORT }}
+          EmailData.weburl: ${{ secrets.EMAILDATA_WEBURL }}
+          EmailData.email: ${{ secrets.EMAILDATA_EMAIL }}
+          EmailData.phone: ${{ secrets.EMAILDATA_PHONE }}
+          SecretKey: ${{ secrets.SECRETKEY }}
+          SecretAdherentCode: ${{ secrets.SECRETADHERENTCODE }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
