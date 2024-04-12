@@ -109,12 +109,21 @@ namespace judo_backend.Services
 
         public void Upload(string path, string filename, MemoryStream ms)
         {
+            var files = this.Get(path, filename);
+
             using (var mysqlconnection = new MySqlConnection(this.ConnectionString))
             {
                 mysqlconnection.Open();
                 using (MySqlCommand cmd = mysqlconnection.CreateCommand())
                 {
-                    cmd.CommandText = $"INSERT INTO Files (path, filename, file) VALUES (@PATH, @FILENAME, @FILE);";
+                    if(files == null)
+                    {
+                        cmd.CommandText = "INSERT INTO Files (path, filename, file) VALUES (@PATH, @FILENAME, @FILE);";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "UPDATE Files SET file=@FILE WHERE filename=@FILENAME;";
+                    }
 
                     cmd.Parameters.Add("@PATH", System.Data.DbType.String);
                     cmd.Parameters["@PATH"].Value = path;
