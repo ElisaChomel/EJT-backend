@@ -1,6 +1,4 @@
-﻿using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using judo_backend.Attributes;
+﻿using judo_backend.Attributes;
 using judo_backend.Models;
 using judo_backend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +56,7 @@ namespace judo_backend.Controllers
             return Ok(person);
         }
 
+
         [HttpGet("Adherent")]
         public ActionResult<List<EjtAdherent>> GetAllAdhenrent()
         {
@@ -95,43 +94,5 @@ namespace judo_backend.Controllers
 
             return Ok(adherent);
         }
-
-        //[HttpPost("WordDoc")]
-        //public ActionResult GenerateWordDoc()
-        //{
-        //    var adherents = this._ejtAdherentService.GetAll();
-        //    var template = "C:\\Users\\echomel\\source\\repos\\Judo\\Communication\\Plaquettes\\V2\\Inscriptions\\Template.docx";
-
-        //    foreach (var adherent in adherents)
-        //    {
-        //        var adherentFilePath = $"C:\\Users\\echomel\\source\\repos\\Judo\\Communication\\Plaquettes\\V2\\Inscriptions\\Files\\{adherent.LicenceCode.Replace("*", "_")}.docx";
-        //        System.IO.File.Copy(template, adherentFilePath);
-
-        //        using (var doc = WordprocessingDocument.Open(adherentFilePath, true))
-        //        {
-        //            var body = doc.MainDocumentPart.Document.Body;
-        //            var paras = body.Elements<Paragraph>();
-
-        //            foreach (var para in paras)
-        //            {
-        //                foreach (var run in para.Elements<Run>())
-        //                {
-        //                    foreach (var text in run.Elements<Text>())
-        //                    {
-        //                        if (text.Text.Contains("_LICENCE_"))
-        //                        {
-        //                            text.Text = text.Text.Replace("_LICENCE_", adherent.LicenceCode);
-        //                        }
-        //                    }
-        //                }
-        //            }
-
-        //            doc.Save();
-        //            doc.Close();
-        //        }
-        //    }
-
-        //    return Ok();
-        //}
     }
 }

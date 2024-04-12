@@ -1,9 +1,7 @@
-﻿using judo_backend.Models;
-using judo_backend.Services.Interfaces;
+﻿using judo_backend.Services.Interfaces;
 using MailKit.Net.Smtp;
 using MimeKit;
 using MimeKit.Utils;
-using System.Text;
 
 namespace judo_backend.Services
 {
@@ -83,7 +81,7 @@ namespace judo_backend.Services
 
             var bodyBuilder = this.BodyBuilder(body);
 
-            this.SendEmail(to, $"Inscription à  la compétition {competitionName}", bodyBuilder);
+            this.SendEmail(to, "Inscription", bodyBuilder);
         }
 
         public void SendStageRegistred(string to, string username, string adherentName, string stageName, string start, string end)
@@ -98,30 +96,6 @@ namespace judo_backend.Services
             var bodyBuilder = this.BodyBuilder(body);
 
             this.SendEmail(to, "Inscription", bodyBuilder);
-        }
-        public void SendOrderConfirmation(string date, ClotheOrder order)
-        {
-            var body = Body("OrderRegistred");
-            body = body.Replace("@REF", order.Reference);
-            body = body.Replace("@DATE", date);
-            body = body.Replace("@ITEMS", ItemsOrderConfirmation(order.Items));
-            body = body.Replace("@TOTAL", order.Price.ToString());
-
-            var bodyBuilder = this.BodyBuilder(body);
-
-            this.SendEmail(order.Email, "Enregistrement de la commande", bodyBuilder);
-        }
-
-        public void SendOrderReceived(ClotheOrder order)
-        {
-            var body = Body("OrderReceived");
-            body = body.Replace("@REF", order.Reference);
-            body = body.Replace("@ITEMS", ItemsOrderConfirmation(order.Items));
-            body = body.Replace("@TOTAL", order.Price.ToString());
-
-            var bodyBuilder = this.BodyBuilder(body);
-
-            this.SendEmail(order.Email, "Commande reçu", bodyBuilder);
         }
 
         private void SendEmail(string to, string subject, BodyBuilder bodyBuilder)
@@ -203,22 +177,6 @@ namespace judo_backend.Services
             bodyBuilder.HtmlBody = body;
 
             return bodyBuilder;
-        }
-
-        private string ItemsOrderConfirmation(List<ClotheOrderItem> items)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            sb.Append("<ul>");
-
-            foreach (var item in items)
-            {
-                sb.Append($"<li><b>{item.Reference}</b> - Taille : {item.Size} - Quantité : {item.Quantity} (Prix : {item.Price} €)</li>");
-            }
-
-            sb.Append("</ul>");
-
-            return sb.ToString();
         }
     }
 }
