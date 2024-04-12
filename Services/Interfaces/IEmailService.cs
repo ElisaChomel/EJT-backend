@@ -1,4 +1,6 @@
-﻿namespace judo_backend.Services.Interfaces
+﻿using judo_backend.Models;
+
+namespace judo_backend.Services.Interfaces
 {
     public interface IEmailService
     {
@@ -13,5 +15,9 @@
         void SendCompetitionRegistred(string to, string username, string adherentName, string competitionName);
 
         void SendStageRegistred(string to, string username, string adherentName, string stageName, string start, string end);
+
+        void SendOrderConfirmation(string date, ClotheOrder order);
+
+        void SendOrderReceived(ClotheOrder order);
     }
 }

@@ -16,6 +16,10 @@
             padding: 0px;
             margin: 0px;
         }
+		
+		li{
+			list-style-type: none;
+		}
 
         .center {
             text-align: center;
@@ -57,7 +61,8 @@
         </tr>
         <tr>
             <td colspan="3" class="center">
-                <h1>Inscription à la compétition @COMPETITIONNAME</h1>
+                <h1>Confirmation de commande</h1>
+				<h1>(REF : @REF)</h1>
             </td>
         </tr>
         <tr>
@@ -69,11 +74,18 @@
             <td colspan="3" class="center">
                 <br />
                 <br />
-                <p>Cher @USERNAME,</p>
-				<br />
-                <p>Nous vous remercions d'avoir complété l'inscription de @ADHERENTNAME à la compétition @COMPETITIONNAME.</p>
+                <p>Nous vous remercions d'être passé par l'EJT de Montagny pour la commande de kimono et vêtement du club.</p>
                 <br />
-				<p>Cet e-mail confirme la prise en compte de la demande. Un email de confirmation avec les dates de la compétition vous sera envoyé lors de la finalisation de l'inscription par l'association.</p>
+				<p>Cet e-mail confirme la prise en compte de la demande. La commande sera effectué par l'association le @DATE, si le paiment à été effectué auprès de l'EJT avant la date de commande.</p>
+				<br />
+				<p>Un e-mail vous sera envoyé une fois la commande récupéré auprès de notre partenaire.</p>
+				<br />
+                <br />
+				<p>Récaptitulation de votre commande : </p>
+				<br />
+				@ITEMS
+				<br />
+				<p>Total de la commande : <b>@TOTAL €</b> (à payer en espèce ou par chèque auprès de l'EJT de Montagny)</p>
 				<br />
                 <br />
                 <p>Vous pouvez aussi nous retrouver sur les réseaux sociaux</p>
