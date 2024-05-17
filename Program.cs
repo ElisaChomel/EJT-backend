@@ -50,6 +50,7 @@ builder.Services.AddScoped<IClotheService, ClotheService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IBlob, Blob>();
 builder.Services.AddScoped<IExcelGeneratorService, ExcelGeneratorService>();
+builder.Services.AddScoped<IStatsService, StatsService>();
 
 var app = builder.Build();
 

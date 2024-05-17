@@ -11,6 +11,7 @@ namespace judo_backend.Services
         {
            
         }
+
         public List<Stage> GetAll()
         {
             var commandText = "SELECT ID, startdate, enddate, name, address, yearBirthdayMin, yearBirthdayMax, maxInscriptionDate FROM Stages";

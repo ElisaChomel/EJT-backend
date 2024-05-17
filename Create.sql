@@ -148,3 +148,11 @@ CREATE table clothesOrderItem(
 	CONSTRAINT PK_clothesOrderItem PRIMARY KEY (ID),
 	CONSTRAINT FK_clothesOrder FOREIGN KEY (Order_ID) REFERENCES clothesOrder (ID)
 );
+
+CREATE table stat(
+	ID INT NOT NULL AUTO_INCREMENT,
+	Date DATETIME(6) NOT NULL,
+	NamePage NVARCHAR(256) NOT NULL,
+	CountView INT NOT NULL,
+	CONSTRAINT PK_stat PRIMARY KEY (ID)
+);
