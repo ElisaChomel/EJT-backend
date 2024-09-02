@@ -70,18 +70,22 @@ namespace judo_backend.Controllers
             }
             
             var names = new List<string>();
+            
             foreach (var date in dates)
             {
                 var temp = this._statsService.GetPageNames(date);    
                 
                 foreach (var name in temp)
                 {
-                    if (!values.Labels.Contains(name))
+                    if (!names.Contains(name))
                     {
                         names.Add(name);
                     }
                 }
             }
+
+            names = names.OrderBy(x => x).ToList();
+
             foreach (var name in names)
             {
                 var dataset = new BarValueDataset();
