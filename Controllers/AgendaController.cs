@@ -40,8 +40,8 @@ namespace judo_backend.Controllers
 
             New n = new New()
             {
-                Date = ret.Date,
-                Title = ret.Title,
+                Date = DateTime.Now,
+                Title = $"Rappel - {ret.Title} le {ret.Date.ToString("dd/MM/yyyy")}",
                 Resume = ret.Resume,
                 Detail = ret.Detail,
             };
